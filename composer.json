@@ -1,0 +1,16 @@
+{
+    "name": "fassoares/sismarketbuy",
+    "description": "Nos do Mercado & estatisticas, oferecemos a você consumidor comum uma contribuicao para cadastrar suas compras diarias, depois de criar e alimentar seu banco de dados, voce podera extrair informacoes tais como: qual o produdo que foi mais consumido em um periodo de tempo? Quais mercados voce frequentou? A variação de preços que os produtos sofreram por local de compra",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Francisco Soares",
+            "email": "fassoares@ymail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "monolog/monolog":"2.1.*",
+        "phpmailer/phpmailer": "~6.1"
+    }
+}

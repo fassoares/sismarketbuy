@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE HTML>
 
 <html lang="pt-br">
 
@@ -25,14 +25,18 @@
         <hr> <!--Cria uma linha horizontal de uma borda a outra da pagina-->
         <div class= "conteiner" >
             <div>
-                <p>
-                    Nós do Mercado & estatísticas, oferecemos a você consumidor comum uma contribuição para cadastrar suas compras diárias, depois de criar e alimentar
-                    seu banco de dados, você poderá extrair informações tais como: qual o produdo que foi mais consumido em um período de tempo, em quais mercados você frequentou,
-                    a variação de preços que os produtos sofreram por local de compra
-                </p>
-                <p>
-                    O Objetivo deste alplicativo é Oferecer uma ferramenta que lhe permita comparar os preços dos intens mais essenciais para o seu dia a dia ou para os seus momentos de trabalho, lazer, diversão, produtividade e muito mais. 
-                </p>
+                <div><img src="Imagens\carrinhoPaoFrutas.jpg" height="250pc">
+                    <p>
+                    <?php echo htmlspecialchars( $Texto1, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                    </p>
+                </div>
+                <div>
+                    <img src="Imagens\pesquisa.jpg" height="250pc"> 
+                    <p>
+                    <?php echo htmlspecialchars( $Texto2, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                    </p></div>
+                
+                
                     Mais Informações:
                     <div>
                         <ol>
@@ -51,9 +55,7 @@
         <hr> <!--Cria uma linha hotizontal de uma borda a outra da pagina-->
         <footer>
            <div"> <!--<img SRC = "http://localhost/mercado/imagens/transparente.png" height=90> --> 
-           <img src="Imagens\carrinhoPaoFrutas.jpg" height="250pc">
            <img src="Imagens\trigo.jpg" height="250pc"> 
-           <img src="Imagens\pesquisa.jpg" height="250pc"> 
            <img src="Imagens\verduras.jpg" height="250pc"> 
            </div>
            <hr> <!--Cria uma linha hotizontal de uma borda a outra da pagina-->

@@ -1,0 +1,100 @@
+// include
+ require_once ("vendor/autoload.php");
+
+ // namespace
+ use Rain\Tpl;
+
+ // config
+ $config = array(
+    "tpl_dir"       => "tpl/",
+    "cache_dir"     => "cache/"
+ );
+
+ //Passa as configurações
+ Tpl::configure( $config );
+
+ // create the Tpl object
+ $tpl = new Tpl;
+
+ // atribuição de variáveis
+ $tpl->assign( "name", "Obi Wan Kenoby" );
+ $tpl->assign( "version", PHP_VERSION );
+
+ // assign an array
+ $tpl->assign( "week", array( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ) );
+
+ // renderiza o template com o HTML a ser enviado por e-mail 
+ $html = $tpl->draw("index", true);
+
+ use PHPMailer\PHPMailer\PHPMailer;
+ use PHPMailer\PHPMailer\SMTP;
+ use PHPMailer\PHPMailer\Exception;
+
+ //Cria uma instância do PHPmailer
+ $mail = new PHPMailer;
+
+ //Tell PHPMailer to use SMTP
+ $mail->isSMTP(); 
+ 
+ //Enable SMTP debugging
+ // SMTP::DEBUG_OFF = off (for production use)
+ // SMTP::DEBUG_CLIENT = client messages
+ // SMTP::DEBUG_SERVER = client and server messages
+ $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+
+ //Formato do debug mostrado na tela
+ $mail->Debugoutput = 'html';
+
+ //Set the hostname of the mail server
+ $mail->Host = 'meuhost.com.br';
+ // use
+ // $mail->Host = gethostbyname('smtp.host.com');
+ // if your network does not support SMTP over IPv6
+
+ //Define o número da porta SMTP - 587 para envio SMTP TLS autenticado, também conhecido como RFC4409
+ $mail->Port = 587;
+
+ //Define o mecanismo de criptografia a ser usado - STARTTLS ou SMTPS
+ $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+
+ //Verifica se deve usar autenticação SMTP
+ $mail->SMTPAuth = true;
+
+ //Username to use for SMTP authentication - use full email address for gmail
+ $mail->Username = 'username@gmail.com';
+
+ //Password to use for SMTP authentication
+  $mail->Password = 'yourpassword';
+
+ //Defina de quem a mensagem deve ser enviada
+ $mail->setFrom('suporte@criandobits.com.br', 'Suporte do site Criandobits');
+
+ //Set an alternative reply-to address
+ //$mail->addReplyTo('replyto@example.com', 'First Last');
+
+ //Defina para quem a mensagem deve ser enviada
+ $mail->addAddress('fulano@gmail.com', 'Benedito Silva Júnior');
+
+ //Set the subject line
+ $mail->Subject = 'Você precisa de ajuda?';
+
+ //Informamos o HTML criado pelo template
+ $mail->msgHTML($html);
+
+ //Caso o leitor de e-mails não suporte HTML, somente textos
+ $mail->AltBody = 'Agradecemos por entrar em contato conosco!';
+
+ //Adiciona anexos
+ //$mail->addAttachment('images/phpmailer_mini.png');
+
+ //Envia a mensagem e verifique se há erros
+ if (!$mail->send()) { //se não enviar
+    echo 'Mailer Error: '. $mail->ErrorInfo;
+ } else {
+    echo 'Message sent!';
+    //Section 2: IMAP
+    //Uncomment these to save your message in the 'Sent Mail' folder.
+    #if (save_mail($mail)) {
+    #    echo "Message saved!";
+    #}
+ }
